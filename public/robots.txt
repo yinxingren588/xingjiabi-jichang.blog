@@ -2,4 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /go/
 
+# Sitemaps
+Sitemap: https://xingjiabi-jichang.blog/sitemap.xml
 Sitemap: https://xingjiabi-jichang.blog/sitemap-index.xml

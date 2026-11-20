@@ -1,0 +1,248 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { AIRPORTS, SITE_CONFIG } from '../data/airports';
+import { FAQ_CATEGORIES, ALL_FAQS } from '../data/faqs';
+import { getCollection } from 'astro:content';
+
+const guides = await getCollection('guides');
+---
+
+<BaseLayout
+  title={`网站地图 (Sitemap) - 全站架构与内容索引导航 - ${SITE_CONFIG.title}`}
+  description="性价比机场全站地图：提供网站所有核心频道、14 大机场深度测评报告、32 篇技术 FAQ 问答、全平台客户端部署教程与 XML 站点地图直链索引。"
+>
+  <div class="bg-gradient-to-b from-slate-50 via-white to-slate-50 min-h-screen py-10 sm:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      {/* Breadcrumb */}
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-6">
+        <a href="/" class="hover:text-blue-600 transition-colors">首页</a>
+        <span>/</span>
+        <span class="text-slate-800 font-semibold">网站地图 (Sitemap)</span>
+      </nav>
+
+      {/* Header */}
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800 border border-blue-200 mb-3">
+          <span>🗺️ 站点架构全景图</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4">
+          网站地图 (Sitemap) · 全站内容索引
+        </h1>
+        <p class="text-base text-slate-600 leading-relaxed">
+          便于用户快速定位目标页面，同时为搜索引擎爬虫提供完整的 URL 拓扑路径。所有页面均保持定期更新与实时链路监测。
+        </p>
+
+        {/* Machine-readable Sitemaps Download Bar */}
+        <div class="flex flex-wrap items-center gap-3 mt-6 pt-6 border-t border-slate-200/80">
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">机器可读格式：</span>
+          <a
+            href="/sitemap.xml"
+            target="_blank"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-medium text-slate-700 hover:text-blue-600 hover:border-blue-400 shadow-2xs transition-all"
+          >
+            <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>sitemap.xml (标准单文件)</span>
+          </a>
+          <a
+            href="/sitemap-index.xml"
+            target="_blank"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-medium text-slate-700 hover:text-blue-600 hover:border-blue-400 shadow-2xs transition-all"
+          >
+            <svg class="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            <span>sitemap-index.xml (索引文件)</span>
+          </a>
+          <a
+            href="/robots.txt"
+            target="_blank"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-medium text-slate-700 hover:text-blue-600 hover:border-blue-400 shadow-2xs transition-all"
+          >
+            <svg class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <span>robots.txt (爬虫规则)</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="space-y-12">
+
+        {/* Section 1: Core Channels */}
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-2xs">
+          <div class="flex items-center gap-2 mb-6 pb-3 border-b border-slate-100">
+            <span class="text-xl">🌟</span>
+            <h2 class="text-xl font-bold text-slate-900">核心频道与功能聚合</h2>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <a href="/" class="p-4 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all group">
+              <div class="font-bold text-slate-900 group-hover:text-blue-600">评测首页 (Home)</div>
+              <p class="text-xs text-slate-500 mt-1">网站主页、晚高峰综合排行、核心选型指标与精选推荐</p>
+              <div class="text-[11px] text-blue-600 mt-2 font-mono">/</div>
+            </a>
+            <a href="/airports" class="p-4 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all group">
+              <div class="font-bold text-slate-900 group-hover:text-blue-600">🏆 综合性能评级榜单</div>
+              <p class="text-xs text-slate-500 mt-1">14 大品牌全维度性能评分、节点类型、解封矩阵与多维筛选</p>
+              <div class="text-[11px] text-blue-600 mt-2 font-mono">/airports</div>
+            </a>
+            <a href="/pricing" class="p-4 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all group">
+              <div class="font-bold text-slate-900 group-hover:text-blue-600">💰 全网官方配套价格库</div>
+              <p class="text-xs text-slate-500 mt-1">同步参考站全系月付/年付/不限时套餐资费表与优惠码核销指南</p>
+              <div class="text-[11px] text-blue-600 mt-2 font-mono">/pricing</div>
+            </a>
+            <a href="/reviews" class="p-4 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all group">
+              <div class="font-bold text-slate-900 group-hover:text-blue-600">📝 专项测试深度报告专栏</div>
+              <p class="text-xs text-slate-500 mt-1">14 大品牌点对点企业级物理专线压测与 6 大板块深度解析</p>
+              <div class="text-[11px] text-blue-600 mt-2 font-mono">/reviews</div>
+            </a>
+            <a href="/faq" class="p-4 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all group">
+              <div class="font-bold text-slate-900 group-hover:text-blue-600">💡 权威技术 FAQ 知识库</div>
+              <p class="text-xs text-slate-500 mt-1">收录 32 篇专业技术级问答，支持按 8 大分类及关键词实时检索</p>
+              <div class="text-[11px] text-blue-600 mt-2 font-mono">/faq</div>
+            </a>
+            <a href="/guides" class="p-4 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/40 transition-all group">
+              <div class="font-bold text-slate-900 group-hover:text-blue-600">📖 客户端标准化部署指引</div>
+              <p class="text-xs text-slate-500 mt-1">全平台主流翻墙客户端从零上手图文指南、一键导入与规则分流</p>
+              <div class="text-[11px] text-blue-600 mt-2 font-mono">/guides</div>
+            </a>
+          </div>
+        </div>
+
+        {/* Section 2: 14 Brand Reviews */}
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-2xs">
+          <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-100">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">🏆</span>
+              <h2 class="text-xl font-bold text-slate-900">14 大品牌深度基准测试报告列表</h2>
+            </div>
+            <span class="text-xs text-slate-400">共 14 篇企业级深度测评</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {AIRPORTS.map((airport, index) => (
+              <a
+                href={`/reviews/${airport.id}`}
+                class={`p-4 rounded-xl border transition-all group flex items-start gap-3 ${
+                  airport.id === 'yinxingren'
+                    ? 'border-blue-300 bg-blue-50/30 hover:bg-blue-50/60'
+                    : 'border-slate-100 hover:border-slate-300 hover:bg-slate-50/60'
+                }`}
+              >
+                <img
+                  src={airport.logo}
+                  alt={airport.name}
+                  class="w-10 h-10 rounded-lg object-contain bg-white border border-slate-200 p-0.5 shrink-0"
+                />
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="font-bold text-slate-900 group-hover:text-blue-600 text-sm truncate">
+                      {airport.name}
+                    </span>
+                    {airport.id === 'yinxingren' && (
+                      <span class="px-1.5 py-0.2 rounded text-[10px] font-bold bg-amber-100 text-amber-800 shrink-0">
+                        #1 旗舰
+                      </span>
+                    )}
+                  </div>
+                  <p class="text-xs text-slate-500 truncate mt-0.5">{airport.tagline}</p>
+                  <div class="flex items-center justify-between text-[11px] text-slate-400 mt-2">
+                    <span>⭐ 评分 {airport.rating}</span>
+                    <span class="font-mono text-blue-600">/reviews/{airport.id}</span>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Section 3: Technical Guides */}
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-2xs">
+          <div class="flex items-center gap-2 mb-6 pb-3 border-b border-slate-100">
+            <span class="text-xl">📖</span>
+            <h2 class="text-xl font-bold text-slate-900">客户端标准化部署与上手教程</h2>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {guides.map((guide) => (
+              <a
+                href={`/guides/${guide.id}`}
+                class="p-4 rounded-xl border border-slate-100 hover:border-emerald-300 hover:bg-emerald-50/30 transition-all group"
+              >
+                <div class="flex items-center gap-2 text-xs mb-1.5">
+                  <span class="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    {guide.data.client}
+                  </span>
+                  <span class="text-slate-400">{guide.data.platform}</span>
+                </div>
+                <h3 class="font-bold text-slate-900 group-hover:text-emerald-700 text-sm line-clamp-2">
+                  {guide.data.title}
+                </h3>
+                <div class="text-[11px] text-slate-400 mt-3 font-mono">
+                  /guides/{guide.id}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Section 4: 32 FAQ Articles Categorized */}
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-2xs">
+          <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-100">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">💡</span>
+              <h2 class="text-xl font-bold text-slate-900">32 篇技术 FAQ 知识库分类直链</h2>
+            </div>
+            <a href="/faq" class="text-xs text-blue-600 hover:text-blue-800 font-bold">
+              进入互动知识库 &rarr;
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {FAQ_CATEGORIES.filter(c => c.key !== 'all').map((cat) => {
+              const catFaqs = ALL_FAQS.filter(f => f.category === cat.key);
+              return (
+                <div class="bg-slate-50/60 rounded-xl p-4 border border-slate-100">
+                  <div class="flex items-center gap-2 font-bold text-slate-800 text-sm mb-3">
+                    <span>{cat.icon}</span>
+                    <span>{cat.label}</span>
+                    <span class="text-xs text-slate-400">({catFaqs.length}篇)</span>
+                  </div>
+                  <ul class="space-y-2 text-xs">
+                    {catFaqs.map(faq => (
+                      <li>
+                        <a
+                          href={`/faq#${faq.id}`}
+                          class="text-slate-600 hover:text-blue-600 transition-colors flex items-start gap-1.5"
+                        >
+                          <span class="text-blue-500 font-bold">·</span>
+                          <span class="line-clamp-1">{faq.question}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Section 5: Legal & Disclaimer */}
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-2xs">
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-slate-100">
+            <span class="text-xl">⚖️</span>
+            <h2 class="text-xl font-bold text-slate-900">法律合规与服务条款</h2>
+          </div>
+          <div class="flex flex-wrap items-center gap-4 text-xs">
+            <a href="/disclaimer" class="p-3 bg-slate-50 border border-slate-200 rounded-lg hover:border-slate-300 font-medium text-slate-700">
+              免责声明与学术合规使用协议 (/disclaimer)
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
