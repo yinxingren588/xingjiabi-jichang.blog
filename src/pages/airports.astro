@@ -1,8 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AirportCard from '../components/AirportCard.astro';
+import AirportGridCard from '../components/AirportGridCard.astro';
 import ComparisonTable from '../components/ComparisonTable.astro';
 import { AIRPORTS, SITE_CONFIG } from '../data/airports';
+
+const [featuredAirport, ...otherAirports] = AIRPORTS;
 ---
 
 <BaseLayout
@@ -23,12 +26,29 @@ import { AIRPORTS, SITE_CONFIG } from '../data/airports';
       </p>
     </div>
 
-    <!-- Airport Card List -->
-    <div class="space-y-8 mb-16">
-      {AIRPORTS.map((airport, index) => (
-        <AirportCard airport={airport} rank={index + 1} />
-      ))}
-    </div>
+    <!-- #1 Featured Airport Card -->
+    {featuredAirport && (
+      <div class="mb-8">
+        <AirportCard airport={featuredAirport} rank={1} />
+      </div>
+    )}
+
+    <!-- Other Airport Cards (4 per row) -->
+    {otherAirports.length > 0 && (
+      <div class="mb-16">
+        <div class="flex items-center gap-2 mb-5">
+          <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+          <h2 class="text-lg font-bold text-slate-800">
+            全部高性价比机场推荐精选（第 2 - {AIRPORTS.length} 名）
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          {otherAirports.map((airport, idx) => (
+            <AirportGridCard airport={airport} rank={idx + 2} />
+          ))}
+        </div>
+      </div>
+    )}
 
     <!-- Table View -->
     <div class="pt-10 border-t border-slate-200">

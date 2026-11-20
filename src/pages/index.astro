@@ -1,10 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AirportCard from '../components/AirportCard.astro';
+import AirportGridCard from '../components/AirportGridCard.astro';
 import ComparisonTable from '../components/ComparisonTable.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import { AIRPORTS, SITE_CONFIG } from '../data/airports';
 import { getCollection } from 'astro:content';
+
+const [featuredAirport, ...otherAirports] = AIRPORTS;
 
 const allReviews = await getCollection('reviews');
 const allGuides = await getCollection('guides');
@@ -99,12 +102,29 @@ const sortedGuides = allGuides.sort((a, b) => b.data.pubDate.getTime() - a.data.
       </a>
     </div>
 
-    {/* Airport Cards */}
-    <div class="space-y-6">
-      {AIRPORTS.map((airport, index) => (
-        <AirportCard airport={airport} rank={index + 1} />
-      ))}
-    </div>
+    {/* Airport Cards: #1 Featured Large Card */}
+    {featuredAirport && (
+      <div class="mb-8">
+        <AirportCard airport={featuredAirport} rank={1} />
+      </div>
+    )}
+
+    {/* Airport Cards: Other Brands (4 per row on desktop) */}
+    {otherAirports.length > 0 && (
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+          <h3 class="text-base font-bold text-slate-800">
+            更多高性价比优质机场精选（第 2 - {AIRPORTS.length} 名）
+          </h3>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          {otherAirports.map((airport, idx) => (
+            <AirportGridCard airport={airport} rank={idx + 2} />
+          ))}
+        </div>
+      </div>
+    )}
   </section>
 
   {/* Section: Comparison Table */}
