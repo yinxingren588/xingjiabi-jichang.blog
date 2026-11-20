@@ -1,0 +1,109 @@
+---
+import { AIRPORTS } from '../data/airports';
+import CopyButton from './CopyButton.astro';
+---
+
+<div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+  <table class="w-full text-left text-sm text-slate-600">
+    <thead class="bg-slate-50 text-xs uppercase font-semibold text-slate-500 border-b border-slate-200">
+      <tr>
+        <th scope="col" class="py-4 px-4 sm:px-6">机场名称与定位</th>
+        <th scope="col" class="py-4 px-4">线路类型</th>
+        <th scope="col" class="py-4 px-4">起步价格</th>
+        <th scope="col" class="py-4 px-4">流量区间</th>
+        <th scope="col" class="py-4 px-4">晚高峰跑分</th>
+        <th scope="col" class="py-4 px-4">流媒体/AI解锁</th>
+        <th scope="col" class="py-4 px-4">优惠码</th>
+        <th scope="col" class="py-4 px-4 sm:px-6 text-center">操作</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-100">
+      {AIRPORTS.map((item, index) => (
+        <tr class="hover:bg-slate-50/80 transition-colors">
+          {/* Airport & Tag */}
+          <td class="py-4 px-4 sm:px-6">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0">
+                {index + 1}
+              </span>
+              <div>
+                <a href={item.reviewSlug ? `/reviews/${item.reviewSlug}` : `/go/${item.id}`} class="font-bold text-slate-900 hover:text-blue-600 block">
+                  {item.name}
+                </a>
+                <span class="text-xs text-slate-400 block max-w-xs truncate">{item.tagline}</span>
+              </div>
+            </div>
+          </td>
+
+          {/* Line Type */}
+          <td class="py-4 px-4 font-medium text-slate-800">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-700">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+              {item.lineType}
+            </span>
+          </td>
+
+          {/* Price */}
+          <td class="py-4 px-4">
+            <span class="font-bold text-slate-900 text-base">{item.price}</span>
+            <span class="text-xs text-slate-400 block">{item.priceNote}</span>
+          </td>
+
+          {/* Traffic */}
+          <td class="py-4 px-4 font-medium text-slate-700">
+            {item.traffic}
+          </td>
+
+          {/* Peak Speed */}
+          <td class="py-4 px-4">
+            <span class="text-xs font-mono font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">
+              {item.speedPeak}
+            </span>
+          </td>
+
+          {/* Unlocks */}
+          <td class="py-4 px-4">
+            <div class="flex flex-wrap gap-1 max-w-[180px]">
+              {item.unlocks.slice(0, 3).map((u) => (
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  {u}
+                </span>
+              ))}
+            </div>
+          </td>
+
+          {/* Discount code */}
+          <td class="py-4 px-4">
+            {item.discountCode ? (
+              <CopyButton text={item.discountCode} label="复制" />
+            ) : (
+              <span class="text-xs text-slate-400">-</span>
+            )}
+          </td>
+
+          {/* Actions */}
+          <td class="py-4 px-4 sm:px-6 text-center">
+            <div class="flex items-center justify-center gap-2">
+              {item.reviewSlug && (
+                <a
+                  href={`/reviews/${item.reviewSlug}`}
+                  class="px-2.5 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-blue-300 text-xs font-medium transition-colors"
+                >
+                  评测
+                </a>
+              )}
+              <a
+                href={`/go/${item.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm transition-colors"
+              >
+                官网
+              </a>
+            </div>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

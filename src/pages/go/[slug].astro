@@ -1,0 +1,88 @@
+---
+import { AIRPORTS } from '../../data/airports';
+import CopyButton from '../../components/CopyButton.astro';
+
+export function getStaticPaths() {
+  return AIRPORTS.map((airport) => ({
+    params: { slug: airport.id },
+    props: { airport },
+  }));
+}
+
+const { airport } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>正在跳转到 {airport.name} 官网 - 性价比机场</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content={`2;url=${airport.affUrl}`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body class="bg-slate-50 flex items-center justify-center min-h-screen p-4 text-slate-800">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 text-center">
+      {/* Loading animation */}
+      <div class="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-5 shadow-sm border border-blue-100 animate-bounce">
+        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+
+      <h1 class="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+        正在前往 {airport.name} 官方网站
+      </h1>
+      <p class="text-xs text-slate-500 mb-6">
+        安全中转认证完成，系统将在 <span id="countdown" class="font-bold text-blue-600 text-sm">2</span> 秒后自动跳转...
+      </p>
+
+      {/* Discount Reminder Box */}
+      {airport.discountCode && (
+        <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 mb-6 text-left">
+          <div class="text-xs font-semibold text-amber-900 mb-1 flex items-center gap-1.5">
+            <span>🎁 专属优惠提醒：</span>
+          </div>
+          <p class="text-xs text-amber-800 mb-2.5">
+            下单时输入优惠码享受折上折优惠：
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="font-mono font-bold text-sm text-slate-900 bg-white px-2.5 py-1 rounded border border-amber-300">
+              {airport.discountCode}
+            </span>
+            <CopyButton text={airport.discountCode} label="一键复制" />
+          </div>
+        </div>
+      )}
+
+      {/* Manual Button */}
+      <a
+        id="target-link"
+        href={airport.affUrl}
+        rel="noopener noreferrer"
+        class="block w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-md shadow-blue-500/20 transition-all"
+      >
+        如果未自动跳转，点击此处立即前往 &rarr;
+      </a>
+
+      <div class="mt-6 text-[11px] text-slate-400">
+        性价比机场 · 中立客观网络测速与导流中转
+      </div>
+    </div>
+
+    <script define:vars={{ affUrl: airport.affUrl }}>
+      let count = 2;
+      const countEl = document.getElementById('countdown');
+      const timer = setInterval(() => {
+        count--;
+        if (countEl) countEl.textContent = count.toString();
+        if (count <= 0) {
+          clearInterval(timer);
+          window.location.href = affUrl;
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { SITE_CONFIG } from '../../data/airports';
+
+const guides = await getCollection('guides');
+const sortedGuides = guides.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<BaseLayout
+  title={`客户端新手配置教程 - ${SITE_CONFIG.title}`}
+  description="全平台科学上网客户端使用教程汇总：涵盖 Windows / macOS / iOS / Android 系统，Clash Verge Rev、Sing-box、Shadowrocket 小火箭一键订阅导入与规则分流设置。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <div class="max-w-3xl mb-12">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 mb-3">
+        <span>📖 小白手把手教程</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4">
+        主流翻墙客户端从零上手配置指南
+      </h1>
+      <p class="text-base text-slate-600 leading-relaxed">
+        买完机场不知道怎么用？按照系统挑选对应客户端，跟着教程 3 分钟即可完成节点导入、分流规则设置与高速上网。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {sortedGuides.map((guide) => (
+        <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-emerald-400 transition-all flex flex-col justify-between p-6">
+          <div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 mb-3">
+              <span class="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                {guide.data.client}
+              </span>
+              <span class="text-slate-400">{guide.data.platform}</span>
+              <span class="text-slate-400">· {guide.data.difficulty}</span>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900 mb-3 line-clamp-2 hover:text-emerald-600 transition-colors">
+              <a href={`/guides/${guide.id}`}>
+                {guide.data.title}
+              </a>
+            </h2>
+            <p class="text-xs text-slate-500 line-clamp-3 leading-relaxed mb-4">
+              {guide.data.description}
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-400">⏱️ 阅读耗时约 {guide.data.readingTime}</span>
+            <a
+              href={`/guides/${guide.id}`}
+              class="font-bold text-emerald-600 hover:text-emerald-800 flex items-center gap-1"
+            >
+              开始学习 &rarr;
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

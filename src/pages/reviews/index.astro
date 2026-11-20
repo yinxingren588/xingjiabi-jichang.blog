@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { SITE_CONFIG } from '../../data/airports';
+
+const reviews = await getCollection('reviews');
+const sortedReviews = reviews.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<BaseLayout
+  title={`机场深度实测专栏 - ${SITE_CONFIG.title}`}
+  description="客观公正的机场实机跑分评测，包含晚高峰千兆宽带测速、ChatGPT与流媒体解锁测试、价格套餐分析与避坑指南。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <div class="max-w-3xl mb-12">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 mb-3">
+        <span>📝 深度实测报告</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4">
+        机场深度实测与晚高峰跑分专栏
+      </h1>
+      <p class="text-base text-slate-600 leading-relaxed">
+        拒绝凭空编造，所有评测均基于一线家用千兆宽带在晚上 20:00 - 23:00 晚高峰实机压测得出，提供真实延迟、丢包率与流媒体解锁截图。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {sortedReviews.map((rev) => (
+        <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-blue-400 transition-all flex flex-col justify-between p-6">
+          <div>
+            <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
+              <span class="font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                ★ {rev.data.rating.toFixed(1)} 评分
+              </span>
+              <time datetime={rev.data.pubDate.toISOString()}>
+                {rev.data.pubDate.toLocaleDateString('zh-CN')}
+              </time>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
+              <a href={`/reviews/${rev.id}`}>
+                {rev.data.title}
+              </a>
+            </h2>
+            <p class="text-xs text-slate-500 line-clamp-3 leading-relaxed mb-4">
+              {rev.data.description}
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-400">{rev.data.author}</span>
+            <a
+              href={`/reviews/${rev.id}`}
+              class="text-xs font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1"
+            >
+              阅读完整测评 &rarr;
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
