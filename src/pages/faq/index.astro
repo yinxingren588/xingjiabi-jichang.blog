@@ -1,0 +1,399 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ALL_FAQS, FAQ_CATEGORIES } from '../../data/faqs';
+import { SITE_CONFIG } from '../../data/airports';
+import { marked } from 'marked';
+
+// Pre-render markdown to HTML for all FAQs at build time
+const renderedFaqs = ALL_FAQS.map(faq => ({
+  ...faq,
+  htmlAnswer: marked.parse(faq.fullAnswer)
+}));
+---
+
+<BaseLayout
+  title={`权威技术 FAQ 知识库：跨国网络加速与节点选型 32 篇深度避坑指南 - ${SITE_CONFIG.title}`}
+  description="收录 32 篇高水准专业技术问答。全面解析企业级 IEPL 物理专线、晚高峰抗丢包压测、ChatGPT/Claude 原生住宅 IP 解锁、Netflix 4K 全区、现代协议 Reality/Hysteria 2、客户端 TUN 调优与防跑路资费精算。"
+>
+  <div class="bg-gradient-to-b from-blue-50/70 via-white to-slate-50 min-h-screen py-10 sm:py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      {/* Breadcrumb */}
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-6">
+        <a href="/" class="hover:text-blue-600 transition-colors">首页</a>
+        <span>/</span>
+        <span class="text-slate-800 font-semibold">技术知识库与 FAQ</span>
+      </nav>
+
+      {/* Hero Header */}
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800 border border-blue-200 mb-4 shadow-2xs">
+          <span>💡 2026 技术专栏 · 32 篇技术深度解答</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-4">
+          跨国网络加速与节点选型<br class="hidden sm:inline" />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+            权威深度技术 FAQ 知识库
+          </span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          拒绝泛泛而谈的敷衍回复！基于万兆物理链路真实压测、双 ISP 住宅出口实测与多年翻墙工程经验，为您深度剖析物理拓扑、AI 风控、流媒体机制与资费避坑。
+        </p>
+
+        {/* Quick Stats Grid */}
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 max-w-2xl mx-auto text-left">
+          <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-2xs">
+            <div class="text-xs text-slate-500 font-medium">知识库收录</div>
+            <div class="text-xl font-extrabold text-blue-600 mt-0.5">32 篇</div>
+            <div class="text-[11px] text-slate-400">持续动态修订</div>
+          </div>
+          <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-2xs">
+            <div class="text-xs text-slate-500 font-medium">技术分类覆盖</div>
+            <div class="text-xl font-extrabold text-indigo-600 mt-0.5">8 大模块</div>
+            <div class="text-[11px] text-slate-400">全网络栈剖析</div>
+          </div>
+          <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-2xs">
+            <div class="text-xs text-slate-500 font-medium">实测依据</div>
+            <div class="text-xl font-extrabold text-emerald-600 mt-0.5">100% 实验室</div>
+            <div class="text-[11px] text-slate-400">千兆晚高峰压测</div>
+          </div>
+          <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-2xs">
+            <div class="text-xs text-slate-500 font-medium">避坑指南</div>
+            <div class="text-xl font-extrabold text-amber-600 mt-0.5">0 商业水文</div>
+            <div class="text-[11px] text-slate-400">客观中立实测</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Interactive Search & Filter Controls */}
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 mb-10 sticky top-20 z-30 backdrop-blur-md bg-white/95">
+        {/* Search Bar */}
+        <div class="relative mb-4">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="faq-search-input"
+            placeholder="实时检索：输入关键词（如 ChatGPT、IEPL、TUN模式、Netflix、倍率、4K、双ISP、跑路）..."
+            class="w-full pl-10 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+          />
+          <button
+            id="faq-search-clear"
+            class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600"
+            title="清空搜索"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Category Tabs */}
+        <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 text-xs no-scrollbar">
+          {FAQ_CATEGORIES.map((cat, idx) => (
+            <button
+              class={`faq-cat-btn whitespace-nowrap px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer ${
+                idx === 0
+                  ? 'bg-blue-600 text-white shadow-xs font-semibold'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
+              }`}
+              data-cat={cat.key}
+            >
+              <span>{cat.icon}</span>
+              <span class="ml-1">{cat.label}</span>
+              <span class="ml-1 text-[10px] opacity-75">({cat.count})</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Result status summary */}
+        <div id="search-result-count" class="text-xs text-slate-500 mt-3 hidden">
+          共匹配到 <span id="match-number" class="font-bold text-blue-600">0</span> 篇相关解答
+        </div>
+      </div>
+
+      {/* FAQ Article List */}
+      <div id="faq-list" class="space-y-6">
+        {renderedFaqs.map((faq, index) => (
+          <article
+            id={faq.id}
+            data-category={faq.category}
+            data-search-text={`${faq.question} ${faq.shortSummary} ${faq.tags.join(' ')} ${faq.fullAnswer}`.toLowerCase()}
+            class="faq-card bg-white rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all duration-200 overflow-hidden"
+          >
+            {/* Card Header & Summary Trigger */}
+            <details class="group" open={index < 3}>
+              <summary class="p-6 cursor-pointer list-none select-none">
+                <div class="flex items-start justify-between gap-4">
+                  <div class="space-y-2 flex-1">
+                    {/* Meta Badges */}
+                    <div class="flex flex-wrap items-center gap-2">
+                      <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200">
+                        <span>{faq.categoryIcon}</span>
+                        <span>{faq.categoryLabel}</span>
+                      </span>
+                      {faq.featuredOnHome && (
+                        <span class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-amber-100 text-amber-800">
+                          ⭐ 核心必读
+                        </span>
+                      )}
+                      <span class="text-xs text-slate-400 font-mono">
+                        Q{String(index + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+
+                    {/* Question Headline */}
+                    <h2 class="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug">
+                      {faq.question}
+                    </h2>
+
+                    {/* Short Summary Takeaway Box */}
+                    <div class="bg-blue-50/60 rounded-xl p-3 border border-blue-100/80 text-xs sm:text-sm text-blue-950 flex items-start gap-2.5 mt-2">
+                      <span class="text-blue-600 font-bold shrink-0 mt-0.5">📌 核心结论：</span>
+                      <p class="leading-relaxed font-medium">{faq.shortSummary}</p>
+                    </div>
+                  </div>
+
+                  {/* Toggle Arrow */}
+                  <div class="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-blue-50 text-slate-400 group-hover:text-blue-600 flex items-center justify-center shrink-0 mt-1 transition-colors">
+                    <svg class="w-5 h-5 group-open:rotate-180 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+              </summary>
+
+              {/* Full Technical Article Content */}
+              <div class="px-6 pb-6 pt-2 border-t border-slate-100 bg-slate-50/30">
+                <div class="faq-content leading-relaxed" set:html={faq.htmlAnswer} />
+
+                {/* Tags & Action Bar */}
+                <div class="pt-5 mt-6 border-t border-slate-200/70 flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <div class="flex flex-wrap items-center gap-1.5">
+                    <span class="text-slate-400">标签：</span>
+                    {faq.tags.map(tag => (
+                      <span class="px-2 py-0.5 bg-white border border-slate-200 rounded text-slate-600 text-[11px]">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div class="flex items-center gap-3">
+                    <button
+                      class="copy-link-btn text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 cursor-pointer transition-colors"
+                      data-anchor={faq.id}
+                    >
+                      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                      </svg>
+                      <span class="btn-text">复制本题直链</span>
+                    </button>
+                    <a href="#top" class="text-slate-400 hover:text-slate-600">回顶部 ↑</a>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </article>
+        ))}
+      </div>
+
+      {/* Empty State */}
+      <div id="faq-empty-state" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 mt-6 p-8">
+        <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4 text-2xl">
+          🔍
+        </div>
+        <h3 class="text-lg font-bold text-slate-800 mb-1">未找到匹配的技术解答</h3>
+        <p class="text-sm text-slate-500 mb-4">请尝试更换检索关键词（例如输入：专线、延迟、Netflix、住宅、协议）</p>
+        <button id="reset-filter-btn" class="px-4 py-2 bg-blue-600 text-white text-xs font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+          重置筛选条件
+        </button>
+      </div>
+
+      {/* Bottom Conversion Banner */}
+      <div class="mt-16 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-3xl p-8 sm:p-12 text-white shadow-xl shadow-blue-600/10 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-8">
+        <div class="max-w-xl">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white mb-3">
+            🏆 2026 精选榜单已更新
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black tracking-tight mb-2">
+            阅读完技术问答，正在寻找靠谱机场？
+          </h2>
+          <p class="text-sm sm:text-base text-blue-100 leading-relaxed">
+            我们已为您实测评测了 14 家主流服务商，包含纯 IEPL 物理专线、双 ISP 原生住宅 IP、全套官方套餐价格表与专属优惠码。
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto shrink-0">
+          <a
+            href="/airports"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white text-blue-700 font-bold hover:bg-blue-50 transition-all shadow-md text-sm"
+          >
+            <span>🏆 查看综合性能评级</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+          <a
+            href="/pricing"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-800/80 hover:bg-blue-800 text-white font-bold transition-all border border-blue-400/30 text-sm"
+          >
+            <span>💰 对比全网配套价格</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  // Client-side instant filter and search script
+  function setupFaqFilters() {
+    const searchInput = document.getElementById('faq-search-input') as HTMLInputElement | null;
+    const clearBtn = document.getElementById('faq-search-clear');
+    const catButtons = document.querySelectorAll('.faq-cat-btn');
+    const cards = document.querySelectorAll('.faq-card') as NodeListOf<HTMLElement>;
+    const emptyState = document.getElementById('faq-empty-state');
+    const resultCount = document.getElementById('search-result-count');
+    const matchNumber = document.getElementById('match-number');
+    const resetBtn = document.getElementById('reset-filter-btn');
+
+    let currentCat = 'all';
+    let searchQuery = '';
+
+    function applyFilter() {
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cat = card.dataset.category;
+        const searchText = card.dataset.searchText || '';
+
+        const matchesCat = currentCat === 'all' || cat === currentCat;
+        const matchesSearch = !searchQuery || searchText.includes(searchQuery.toLowerCase());
+
+        if (matchesCat && matchesSearch) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (emptyState) {
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+      }
+
+      if (resultCount && matchNumber) {
+        if (searchQuery || currentCat !== 'all') {
+          resultCount.classList.remove('hidden');
+          matchNumber.textContent = String(visibleCount);
+        } else {
+          resultCount.classList.add('hidden');
+        }
+      }
+    }
+
+    // Category button click
+    catButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        catButtons.forEach(b => {
+          b.classList.remove('bg-blue-600', 'text-white', 'shadow-xs', 'font-semibold');
+          b.classList.add('bg-slate-100', 'text-slate-600');
+        });
+        btn.classList.add('bg-blue-600', 'text-white', 'shadow-xs', 'font-semibold');
+        btn.classList.remove('bg-slate-100', 'text-slate-600');
+
+        currentCat = (btn as HTMLElement).dataset.cat || 'all';
+        applyFilter();
+      });
+    });
+
+    // Search input
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = (e.target as HTMLInputElement).value.trim();
+        if (clearBtn) {
+          if (searchQuery) {
+            clearBtn.classList.remove('hidden');
+          } else {
+            clearBtn.classList.add('hidden');
+          }
+        }
+        applyFilter();
+      });
+    }
+
+    // Clear search
+    if (clearBtn && searchInput) {
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        clearBtn.classList.add('hidden');
+        applyFilter();
+        searchInput.focus();
+      });
+    }
+
+    // Reset button
+    if (resetBtn && searchInput) {
+      resetBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        if (clearBtn) clearBtn.classList.add('hidden');
+        currentCat = 'all';
+        catButtons.forEach((b, idx) => {
+          if (idx === 0) {
+            b.classList.add('bg-blue-600', 'text-white', 'shadow-xs', 'font-semibold');
+            b.classList.remove('bg-slate-100', 'text-slate-600');
+          } else {
+            b.classList.remove('bg-blue-600', 'text-white', 'shadow-xs', 'font-semibold');
+            b.classList.add('bg-slate-100', 'text-slate-600');
+          }
+        });
+        applyFilter();
+      });
+    }
+
+    // Copy link functionality
+    document.querySelectorAll('.copy-link-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const anchor = (btn as HTMLElement).dataset.anchor;
+        if (!anchor) return;
+        const url = `${window.location.origin}/faq#${anchor}`;
+        navigator.clipboard.writeText(url).then(() => {
+          const textSpan = btn.querySelector('.btn-text');
+          if (textSpan) {
+            const originalText = textSpan.textContent;
+            textSpan.textContent = '已复制直链！';
+            setTimeout(() => {
+              textSpan.textContent = originalText;
+            }, 2000);
+          }
+        });
+      });
+    });
+
+    // Handle initial hash in URL
+    if (window.location.hash) {
+      const targetId = window.location.hash.substring(1);
+      const targetCard = document.getElementById(targetId);
+      if (targetCard) {
+        const details = targetCard.querySelector('details');
+        if (details) details.open = true;
+        targetCard.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+
+  // Run on load
+  document.addEventListener('DOMContentLoaded', setupFaqFilters);
+  // Also run for Astro view transitions if any
+  setupFaqFilters();
+</script>

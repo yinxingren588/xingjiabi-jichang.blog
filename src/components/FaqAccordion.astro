@@ -1,47 +1,67 @@
 ---
-const faqs = [
-  {
-    q: "评估一家优质“高性价比网络加速服务商”应核心考量哪些技术指标？",
-    a: "衡量网络加速服务的优劣不可仅依据资费高低。核心评估维度包括：① 物理层链路架构（企业级 IEPL/IPLC 内网专线 > 多入口 BGP 隧道中继 > 公网直连）；② 晚高峰时段（20:00-23:00）的下行有效吞吐、丢包率与 Jitter（抖动）；③ IP 纯净度与 ASN 属性（是否具备纯净住宅 IP 以稳定访问 ChatGPT、Claude 等高风控 AI 平台）；④ 计费灵活性（是否支持弹性月付以降低单次试错成本）。"
-  },
-  {
-    q: "IEPL 内网专线相较于普通公网中继的核心技术优势是什么？",
-    a: "IEPL (International Ethernet Private Line) 属于端到端的跨国物理专线通信，流量通过点对点专用内网传输，完全不经过公网国际出入口网关（GFW）。因此在敏感时期依然具备高容灾能力，延迟抖动极小且丢包率几乎为 0；而普通公网中继在骨干网高峰拥堵或重大网络管制时容易出现丢包剧增与断流阻断。"
-  },
-  {
-    q: "为何服务接入建议遵循“先按月试用，再周期长订”原则？",
-    a: "由于不同用户的本地宽带接入运营商（电信、联通、移动、广电及教育网）在出口路由分配、QoS 策略以及本地 NAT 转发层面存在显著差异，且跨国服务器机房拓扑受外部环境影响较大。建议新接入用户优先选用月付方案实测自家网络晚高峰表现，验证稳定符合自身需求后再通过年付优惠锁定长期使用成本。"
-  },
-  {
-    q: "访问 OpenAI / Claude 提示“Access Denied”的根本原因与应对策略？",
-    a: "OpenAI 与 Anthropic 等头部 AI 厂商对访问源 IP 实施严格的风控安全策略。当大量用户共享机房 IDC（数据中心）广播 IP 时，系统极易触发自动化异常防御并拦截访问。推荐选用本评级榜中明确标注“原生住宅 IP / AI 纯净专线”的服务节点，获得干净的出口证书以保障业务不中断。"
-  },
-  {
-    q: "Clash Verge Rev、Sing-box 等主流开源客户端该如何按需选型？",
-    a: "① 桌面端（Windows / macOS / Linux）：首选【Clash Verge Rev】，基于现代化 Tauri 框架构建，内置 Mihomo 强大内核，内存占用极低且支持可视化分流规则与 TUN 虚拟网卡模式；② 移动端（iOS）：推荐采用 App Store 热门成熟的【Shadowrocket (小火箭)】或免费开源的【Sing-box】；③ 安卓端（Android）：推荐使用【Clash Verge】或原生【Sing-box】客户端。"
-  }
-];
+import { HOME_FEATURED_FAQS } from '../data/faqs';
+import { marked } from 'marked';
+
+// Render the 8 featured home FAQs with markdown
+const faqs = HOME_FEATURED_FAQS.map(faq => ({
+  ...faq,
+  htmlAnswer: marked.parse(faq.fullAnswer)
+}));
 ---
 
 <div class="space-y-4">
   {faqs.map((faq, index) => (
-    <details class="group bg-white rounded-xl border border-slate-200 overflow-hidden transition-all duration-200 hover:border-slate-300">
+    <details class="group bg-white rounded-2xl border border-slate-200/90 overflow-hidden transition-all duration-200 hover:border-blue-300 hover:shadow-2xs">
       <summary class="flex items-center justify-between p-5 text-left font-bold text-slate-800 cursor-pointer list-none select-none">
         <span class="flex items-center gap-3">
-          <span class="w-6 h-6 rounded-md bg-blue-50 text-blue-600 text-xs font-black flex items-center justify-center shrink-0">
+          <span class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 text-xs font-black flex items-center justify-center shrink-0 border border-blue-100">
             Q{index + 1}
           </span>
           <span class="text-base text-slate-900 group-hover:text-blue-600 transition-colors">
-            {faq.q}
+            {faq.question}
           </span>
         </span>
         <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform duration-200 shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
         </svg>
       </summary>
-      <div class="px-5 pb-5 pt-1 text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
-        <p>{faq.a}</p>
+
+      <div class="px-6 pb-6 pt-2 border-t border-slate-100 bg-slate-50/40">
+        {/* Core Summary Box */}
+        <div class="bg-blue-50/80 rounded-xl p-3 border border-blue-100 text-xs text-blue-900 mb-4 flex items-start gap-2">
+          <span class="text-blue-600 font-bold shrink-0">📌 核心结论：</span>
+          <span class="font-medium leading-relaxed">{faq.shortSummary}</span>
+        </div>
+
+        {/* Full Rich Answer */}
+        <div class="faq-content text-sm" set:html={faq.htmlAnswer} />
+
+        <div class="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-xs">
+          <span class="text-slate-400 font-medium">分类：{faq.categoryLabel}</span>
+          <a
+            href={`/faq#${faq.id}`}
+            class="text-blue-600 hover:text-blue-800 font-bold inline-flex items-center gap-1"
+          >
+            查看知识库完整专栏直链 &rarr;
+          </a>
+        </div>
       </div>
     </details>
   ))}
+</div>
+
+{/* View All FAQs CTA Button */}
+<div class="mt-8 text-center">
+  <a
+    href="/faq"
+    class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-sm shadow-md hover:shadow-lg hover:from-blue-700 hover:to-indigo-700 transition-all"
+  >
+    <span>💡 浏览全部 32 篇深度技术 FAQ 问答与避坑专栏</span>
+    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+    </svg>
+  </a>
+  <p class="text-xs text-slate-400 mt-2">
+    涵盖 8 大技术分类 · 物理专线 / AI住宅IP / 客户端TUN / 资费避坑
+  </p>
 </div>
