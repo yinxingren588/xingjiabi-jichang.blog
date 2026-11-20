@@ -96,7 +96,14 @@ const badgeClass = airport.badgeColor ? badgeColors[airport.badgeColor] : badgeC
   {/* Footer: Price & CTA Actions */}
   <div class="pt-3 border-t border-slate-100">
     <div class="flex items-baseline justify-between mb-3">
-      <span class="text-[11px] text-slate-400">起步价格</span>
+      <div class="flex items-center gap-1.5">
+        <span class="text-[11px] text-slate-400">起步价格</span>
+        {airport.plans && airport.plans.length > 0 && (
+          <span class="text-[10px] text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded font-medium">
+            {airport.plans.length}档配套
+          </span>
+        )}
+      </div>
       <div class="text-right">
         <span class="text-xl font-black text-slate-900">{airport.price}</span>
         <span class="text-[10px] text-slate-400">{airport.priceNote}</span>

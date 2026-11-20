@@ -106,7 +106,7 @@ const badgeClass = airport.badgeColor ? badgeColors[airport.badgeColor] : badgeC
     </div>
 
     {/* Supported Tags */}
-    <div class="flex flex-wrap items-center gap-1.5 mb-6">
+    <div class="flex flex-wrap items-center gap-1.5 mb-5">
       <span class="text-xs text-slate-400 mr-1">支持协议:</span>
       {airport.protocols.map((p) => (
         <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 text-slate-600 border border-slate-200">
@@ -120,6 +120,50 @@ const badgeClass = airport.badgeColor ? badgeColors[airport.badgeColor] : badgeC
         </span>
       ))}
     </div>
+
+    {/* Featured Official Plans Overview */}
+    {airport.plans && airport.plans.length > 0 && (
+      <div class="mb-5 p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+            <span class="text-xs font-bold text-slate-800 uppercase tracking-wider">官方全系配套价格参考</span>
+          </div>
+          {airport.reviewSlug && (
+            <a href={`/reviews/${airport.reviewSlug}`} class="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1">
+              <span>查看全部 {airport.plans.length} 档配套明细</span>
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          )}
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+          {airport.plans.slice(0, 4).map((plan) => (
+            <div class="p-2.5 rounded-lg bg-white border border-slate-200/90 shadow-2xs hover:border-blue-300 transition-colors">
+              <div class="flex items-center justify-between gap-1 mb-1">
+                <span class="font-bold text-xs text-slate-800 truncate">{plan.name}</span>
+                {plan.badge && (
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200 shrink-0 font-medium">
+                    {plan.badge.split('·')[0].trim().slice(0, 6)}
+                  </span>
+                )}
+              </div>
+              <div class="text-[11px] text-slate-500 mb-1">{plan.traffic}</div>
+              <div class="flex items-baseline gap-1">
+                <span class="text-sm font-extrabold text-blue-700">{plan.price}</span>
+                <span class="text-[10px] text-slate-400">{plan.period}</span>
+              </div>
+              {plan.effective && (
+                <div class="text-[10px] text-emerald-600 font-medium truncate mt-0.5">
+                  {plan.effective}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
 
     {/* Footer: Price & CTA Actions */}
     <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">

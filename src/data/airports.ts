@@ -1,3 +1,16 @@
+import ALL_PLANS_RAW from "./all_plans.json";
+const ALL_PLANS = ALL_PLANS_RAW as Record<string, AirportPlan[]>;
+export interface AirportPlan {
+  name: string;
+  badge?: string;
+  desc?: string;
+  traffic: string;
+  price: string;
+  period: string;
+  effective?: string;
+  features: string[];
+}
+
 export interface Airport {
   id: string;
   name: string;
@@ -20,6 +33,7 @@ export interface Airport {
   reviewSlug?: string;
   speedPeak: string;
   isRecommended?: boolean;
+  plans?: AirportPlan[];
 }
 
 export const AIRPORTS: Airport[] = [
@@ -30,9 +44,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "全IEPL顶级纯净专线，超强隐私与抗封锁防护，晚高峰4K秒开",
     badge: "🏆 2026顶级抗封锁推荐",
     badgeColor: "blue",
-    price: "¥15.00",
+    price: "¥7.27",
     priceNote: "/月起",
-    traffic: "120GB - 1000GB",
+    traffic: "80GB - 1800GB / 不限时",
     lineType: "纯IEPL企业专线",
     protocols: ["Shadowsocks", "VLESS (Reality)", "Trojan"],
     unlocks: ["ChatGPT", "Claude 3.5", "Netflix 4K", "Disney+", "YouTube Premium", "TikTok"],
@@ -49,7 +63,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://varnexa.invisibleaff.com/#/?code=JF4seZUy",
     reviewSlug: "yinxingren",
     speedPeak: "650 Mbps+ (晚高峰极速秒开)",
-    isRecommended: true
+    isRecommended: true,
+    plans: ALL_PLANS["yinxingren"] as AirportPlan[],
   },
   {
     id: "muguang",
@@ -57,9 +72,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "大带宽优质专线，高码率4K流媒体播放与多设备极速冲浪",
     badge: "⚡ 晚高峰极速秒开",
     badgeColor: "purple",
-    price: "¥12.80",
+    price: "¥9.08",
     priceNote: "/月起",
-    traffic: "150GB - 1200GB",
+    traffic: "70GB - 1500GB / 400G不限时",
     lineType: "BGP隧道 + 专线加速",
     protocols: ["Shadowsocks", "Hysteria 2", "VLESS"],
     unlocks: ["Netflix 4K", "Disney+", "YouTube 4K", "ChatGPT", "TikTok"],
@@ -76,7 +91,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://varnexa.twilightaff.com/#/?code=3qqonTlH",
     reviewSlug: "muguang",
     speedPeak: "590 Mbps+ (稳定不卡顿)",
-    isRecommended: true
+    isRecommended: true,
+    plans: ALL_PLANS["muguang"] as AirportPlan[],
   },
   {
     id: "breezenet",
@@ -84,9 +100,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "清爽稳定老牌口碑团队，多入口智能负载均衡与容灾架构",
     badge: "🌟 高口碑稳定首选",
     badgeColor: "emerald",
-    price: "¥16.00",
+    price: "¥10.28",
     priceNote: "/月起",
-    traffic: "160GB - 1500GB",
+    traffic: "100GB - 1200GB / 570G不限时",
     lineType: "多入口 BGP 中继专线",
     protocols: ["Shadowsocks", "Trojan", "VLESS"],
     unlocks: ["ChatGPT", "Claude", "Netflix 4K", "Disney+", "Hulu"],
@@ -103,7 +119,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://edp01.breezenetaff.com/#/?code=4KDOroY0",
     reviewSlug: "breezenet",
     speedPeak: "560 Mbps+ (全天稳定跑满)",
-    isRecommended: true
+    isRecommended: true,
+    plans: ALL_PLANS["breezenet"] as AirportPlan[],
   },
   {
     id: "flycat",
@@ -111,9 +128,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "大流量超值性价比之王，学生党与高码率视频下载党首选",
     badge: "🐱 性价比大流量之王",
     badgeColor: "amber",
-    price: "¥9.90",
+    price: "¥7.00",
     priceNote: "/月起",
-    traffic: "200GB - 2000GB",
+    traffic: "50GB - 1200GB / 200G买断",
     lineType: "高速隧道中继",
     protocols: ["Shadowsocks", "VLESS", "Hysteria 2"],
     unlocks: ["ChatGPT", "YouTube 4K", "TikTok", "Twitter/X"],
@@ -130,7 +147,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://flycat1.flycatvipaff.cc/#/?code=Os3T3OxW",
     reviewSlug: "flycat",
     speedPeak: "480 Mbps+ (性价比超群)",
-    isRecommended: true
+    isRecommended: true,
+    plans: ALL_PLANS["flycat"] as AirportPlan[],
   },
   {
     id: "dalaocloud",
@@ -138,9 +156,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "企业级高净值商业专线，超低延迟，AI 生产力与商务办公首选",
     badge: "💼 企业级高端专线",
     badgeColor: "blue",
-    price: "¥20.00",
+    price: "¥15.60",
     priceNote: "/月起",
-    traffic: "200GB - 2500GB",
+    traffic: "100GB - 1200GB / 350G买断",
     lineType: "纯IEPL商业专线",
     protocols: ["Shadowsocks", "VLESS (Reality)", "Trojan"],
     unlocks: ["ChatGPT 4o", "Claude 3.5", "Midjourney", "Netflix 4K", "Disney+"],
@@ -155,7 +173,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://vip.dalaocloud.com/#/?code=05KusH3b",
     reviewSlug: "dalaocloud",
     speedPeak: "720 Mbps+ (企业级极速带宽)",
-    isRecommended: true
+    isRecommended: true,
+    plans: ALL_PLANS["dalaocloud"] as AirportPlan[],
   },
   {
     id: "flyv",
@@ -163,9 +182,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "轻快敏捷新一代机场，低延迟、快响应、4K秒开",
     badge: "🚀 极速冲浪神器",
     badgeColor: "rose",
-    price: "¥11.00",
+    price: "¥8.25",
     priceNote: "/月起",
-    traffic: "120GB - 800GB",
+    traffic: "65GB - 1800GB / 1000G买断",
     lineType: "优质 BGP 专线",
     protocols: ["Shadowsocks", "Hysteria 2"],
     unlocks: ["ChatGPT", "YouTube 4K", "TikTok", "Disney+"],
@@ -182,7 +201,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://varnexa.flyvaff.com/#/?code=IC0p64fi",
     reviewSlug: "flyv",
     speedPeak: "510 Mbps+",
-    isRecommended: false
+    isRecommended: false,
+    plans: ALL_PLANS["flyv"] as AirportPlan[],
   },
   {
     id: "wavenet",
@@ -190,9 +210,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "汹涌澎湃的下行速度，重度 4K 蓝光流媒体与大文件下载神器",
     badge: "🌊 4K海量视频首选",
     badgeColor: "blue",
-    price: "¥15.80",
+    price: "¥9.92",
     priceNote: "/月起",
-    traffic: "250GB - 1600GB",
+    traffic: "80GB - 2000GB / 900G买断",
     lineType: "高带宽 IEPL 中继",
     protocols: ["Shadowsocks", "VLESS", "Trojan"],
     unlocks: ["Netflix 4K", "Disney+", "YouTube Premium", "ChatGPT", "HBO Max"],
@@ -209,7 +229,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://varnexa.wavenetaff.com/#/?code=j468t9eF",
     reviewSlug: "wavenet",
     speedPeak: "610 Mbps+",
-    isRecommended: false
+    isRecommended: false,
+    plans: ALL_PLANS["wavenet"] as AirportPlan[],
   },
   {
     id: "lingdong",
@@ -217,9 +238,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "节点灵活机动，智能动态路由，外服游戏电竞超低丢包",
     badge: "🎮 游戏电竞低延迟",
     badgeColor: "emerald",
-    price: "¥13.50",
+    price: "¥8.25",
     priceNote: "/月起",
-    traffic: "130GB - 900GB",
+    traffic: "70GB - 1500GB / 200G买断",
     lineType: "低延迟专线加速",
     protocols: ["Shadowsocks", "Hysteria 2", "Sing-box"],
     unlocks: ["ChatGPT", "Steam", "Apex 英雄", "Valorant", "Netflix"],
@@ -236,7 +257,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://varnexa.lingdongaff.com/#/?code=QcRK6OPG",
     reviewSlug: "lingdong",
     speedPeak: "530 Mbps+",
-    isRecommended: false
+    isRecommended: false,
+    plans: ALL_PLANS["lingdong"] as AirportPlan[],
   },
   {
     id: "laddercloud",
@@ -244,9 +266,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "通俗易懂的老牌云加速服务，傻瓜式操作与稳定品质",
     badge: "🪜 新手入门必备",
     badgeColor: "amber",
-    price: "¥12.00",
+    price: "¥7.42",
     priceNote: "/月起",
-    traffic: "100GB - 700GB",
+    traffic: "60GB - 1600GB / 700G买断",
     lineType: "多线隧道专线",
     protocols: ["Shadowsocks", "Trojan"],
     unlocks: ["ChatGPT", "Netflix", "YouTube 4K", "Twitter/X"],
@@ -261,7 +283,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://varnexa.ladderaff.com/#/?code=KSmLLEnR",
     reviewSlug: "laddercloud",
     speedPeak: "460 Mbps+",
-    isRecommended: false
+    isRecommended: false,
+    plans: ALL_PLANS["laddercloud"] as AirportPlan[],
   },
   {
     id: "worryfree",
@@ -269,9 +292,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "7x24小时全天候高在线率，告别断连与维护烦恼",
     badge: "🛡️ 稳定无忧 零宕机",
     badgeColor: "purple",
-    price: "¥14.00",
+    price: "¥6.58",
     priceNote: "/月起",
-    traffic: "160GB - 1200GB",
+    traffic: "40GB - 1000GB / 300G买断",
     lineType: "双重高可用中继",
     protocols: ["Shadowsocks", "VLESS", "Trojan"],
     unlocks: ["ChatGPT", "Claude", "Netflix 4K", "Disney+"],
@@ -288,7 +311,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://wep01.worryfreeaff.com/#/?code=56A0RTpU",
     reviewSlug: "worryfree",
     speedPeak: "520 Mbps+",
-    isRecommended: false
+    isRecommended: false,
+    plans: ALL_PLANS["worryfree"] as AirportPlan[],
   },
   {
     id: "firefly",
@@ -296,9 +320,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "暗夜中的明亮极速之光，新协议低丢包强劲穿透校园网",
     badge: "🔥 超强抗干扰穿透",
     badgeColor: "rose",
-    price: "¥10.00",
+    price: "¥8.00",
     priceNote: "/月起",
-    traffic: "100GB - 800GB",
+    traffic: "60GB - 1200GB / 200G买断",
     lineType: "全协议混合专线",
     protocols: ["Hysteria 2", "VLESS (Reality)", "Shadowsocks"],
     unlocks: ["ChatGPT", "TikTok", "YouTube 4K", "Instagram"],
@@ -315,7 +339,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://vip02.fireflyaff.com/#/?code=Fes6j9rn",
     reviewSlug: "firefly",
     speedPeak: "540 Mbps+",
-    isRecommended: false
+    isRecommended: false,
+    plans: ALL_PLANS["firefly"] as AirportPlan[],
   },
   {
     id: "civet",
@@ -323,9 +348,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "敏捷机动的高速节点群，覆盖全球多个小众国家地区",
     badge: "🐾 全球冷门多节点",
     badgeColor: "emerald",
-    price: "¥13.00",
+    price: "¥7.08",
     priceNote: "/月起",
-    traffic: "150GB - 1000GB",
+    traffic: "45GB - 300GB / 500G买断",
     lineType: "全 BGP 优质隧道",
     protocols: ["Shadowsocks", "Trojan"],
     unlocks: ["ChatGPT", "Netflix", "Disney+", "Hulu", "BBC iPlayer"],
@@ -340,7 +365,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://vip02.civetaff.com/#/?code=kZlRw46w",
     reviewSlug: "civet",
     speedPeak: "490 Mbps+",
-    isRecommended: false
+    isRecommended: false,
+    plans: ALL_PLANS["civet"] as AirportPlan[],
   },
   {
     id: "flashleap",
@@ -348,9 +374,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "闪电般瞬间越过晚高峰拥堵，专线高敏吞吐秒开体验",
     badge: "⚡ 闪电极速专线",
     badgeColor: "blue",
-    price: "¥14.50",
+    price: "¥8.00",
     priceNote: "/月起",
-    traffic: "180GB - 1200GB",
+    traffic: "60GB - 1300GB / 420G买断",
     lineType: "IEPL高速直通专线",
     protocols: ["Shadowsocks", "VLESS", "Hysteria 2"],
     unlocks: ["ChatGPT 4o", "Claude 3.5", "Netflix 4K", "YouTube Premium"],
@@ -367,7 +393,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://vip02.flashleapaff.com/#/?code=FkCGEeaC",
     reviewSlug: "flashleap",
     speedPeak: "630 Mbps+",
-    isRecommended: true
+    isRecommended: true,
+    plans: ALL_PLANS["flashleap"] as AirportPlan[],
   },
   {
     id: "kuajie",
@@ -375,9 +402,9 @@ export const AIRPORTS: Airport[] = [
     tagline: "外贸出海、科研学术与跨境电商一站式网络加速方案",
     badge: "🌐 外贸出海专享",
     badgeColor: "purple",
-    price: "¥16.80",
+    price: "¥8.00",
     priceNote: "/月起",
-    traffic: "200GB - 1500GB",
+    traffic: "60GB - 1800GB / 300G买断",
     lineType: "跨国企业商用专线",
     protocols: ["Shadowsocks", "Trojan", "VLESS"],
     unlocks: ["ChatGPT", "Claude", "Amazon", "PayPal", "TikTok", "Shopify"],
@@ -392,7 +419,8 @@ export const AIRPORTS: Airport[] = [
     affUrl: "https://vip02.kuajieaff.com/#/?code=VfWeYwHM",
     reviewSlug: "kuajie",
     speedPeak: "600 Mbps+",
-    isRecommended: false
+    isRecommended: false,
+    plans: ALL_PLANS["kuajie"] as AirportPlan[],
   }
 ];
 
