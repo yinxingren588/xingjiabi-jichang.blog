@@ -1,0 +1,338 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CopyButton from '../components/CopyButton.astro';
+import { AIRPORTS, SITE_CONFIG } from '../data/airports';
+
+// Map airports with their plans
+const brandList = AIRPORTS.map((airport) => ({
+  ...airport,
+  plans: airport.plans || []
+}));
+
+const totalPlans = brandList.reduce((acc, curr) => acc + curr.plans.length, 0);
+---
+
+<BaseLayout
+  title={`2026年度高性价比机场官方全套配套价格与资费精算表 - ${SITE_CONFIG.title}`}
+  description="收录2026年最新14家高性价比机场全套官方套餐资费与规格明细。涵盖周期年付、灵活月付、大流量及永久不限时买断全系方案，提供折合月费精算与专属折扣码。"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <!-- Header Hero -->
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 mb-3">
+        <span>📊 官方数据实时同步 · 全网全套配套资费库</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight mb-4">
+        2026 官方全套配套价格与资费精算库
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+        涵盖 <strong>{brandList.length}</strong> 大主流稳定品牌、共计 <strong>{totalPlans}</strong> 档官方规格方案。无论是极低门槛的年付精算包、按月订购的追剧主力，还是永不过期的不限时买断备用包，皆可一站式检索对比。
+      </p>
+    </div>
+
+    <!-- Quick Stats Bar -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto mb-10">
+      <div class="p-3.5 sm:p-4 rounded-xl bg-white border border-slate-200 shadow-2xs text-center">
+        <div class="text-xs text-slate-400 mb-0.5">收录品牌</div>
+        <div class="text-xl sm:text-2xl font-black text-slate-900">{brandList.length} 家精选</div>
+      </div>
+      <div class="p-3.5 sm:p-4 rounded-xl bg-white border border-slate-200 shadow-2xs text-center">
+        <div class="text-xs text-slate-400 mb-0.5">收录套餐总数</div>
+        <div class="text-xl sm:text-2xl font-black text-blue-600">{totalPlans} 档规格</div>
+      </div>
+      <div class="p-3.5 sm:p-4 rounded-xl bg-white border border-slate-200 shadow-2xs text-center">
+        <div class="text-xs text-slate-400 mb-0.5">全网最低起步价</div>
+        <div class="text-xl sm:text-2xl font-black text-emerald-600">¥6.58 /月起</div>
+      </div>
+      <div class="p-3.5 sm:p-4 rounded-xl bg-white border border-slate-200 shadow-2xs text-center">
+        <div class="text-xs text-slate-400 mb-0.5">最高专属折扣</div>
+        <div class="text-xl sm:text-2xl font-black text-amber-600">全场 8 折起</div>
+      </div>
+    </div>
+
+    <!-- Filter & Search Toolbar -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-5 mb-10 sticky top-20 z-30 backdrop-blur-md bg-white/95">
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        <!-- Search Input -->
+        <div class="relative w-full md:w-80">
+          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input
+            type="text"
+            id="planSearch"
+            placeholder="搜索套餐名称、品牌、流量或价格..."
+            class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+          />
+        </div>
+
+        <!-- Plan Type Filter Tabs -->
+        <div class="flex flex-wrap items-center gap-1.5 w-full md:w-auto">
+          <button class="plan-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-blue-600 text-white shadow-xs" data-type="all">
+            全部配套 ({totalPlans})
+          </button>
+          <button class="plan-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all" data-type="annual">
+            📅 年度精算包
+          </button>
+          <button class="plan-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all" data-type="monthly">
+            ⚡ 灵活月付档
+          </button>
+          <button class="plan-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all" data-type="onetime">
+            ♾️ 永久不限时包
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Brand Jump Pills -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pt-3 mt-3 border-t border-slate-100 no-scrollbar text-xs">
+        <span class="text-slate-400 shrink-0 mr-1">快捷定位品牌:</span>
+        {brandList.map((brand) => (
+          <a
+            href={`#brand-${brand.id}`}
+            class="shrink-0 px-2.5 py-1 rounded-md bg-slate-50 hover:bg-blue-50 hover:text-blue-700 text-slate-600 border border-slate-200/80 transition-colors font-medium"
+          >
+            {brand.name} ({brand.plans.length})
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Brands & Plans Directory -->
+    <div class="space-y-12" id="plansContainer">
+      {brandList.map((brand, bIdx) => (
+        <section id={`brand-${brand.id}`} class="brand-section scroll-mt-28" data-brand={brand.name.toLowerCase()} data-brandid={brand.id}>
+          <!-- Brand Header Card -->
+          <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl p-5 sm:p-6 mb-5 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-start sm:items-center gap-4">
+              <span class="w-8 h-8 rounded-full bg-blue-500 text-white font-black text-sm flex items-center justify-center shrink-0">
+                #{bIdx + 1}
+              </span>
+              {brand.logo ? (
+                <img src={brand.logo} alt={brand.name} class="w-12 h-12 rounded-xl object-cover bg-white p-0.5 shrink-0" />
+              ) : null}
+              <div>
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                  <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                    {brand.name}
+                  </h2>
+                  {brand.badge && (
+                    <span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-500/30 text-blue-200 border border-blue-400/30 font-medium">
+                      {brand.badge}
+                    </span>
+                  )}
+                  <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-medium">
+                    {brand.lineType}
+                  </span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-300">
+                  {brand.tagline} · 共 {brand.plans.length} 档官方配套方案
+                </p>
+              </div>
+            </div>
+
+            <!-- Brand CTA & Discount -->
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              {brand.discountCode && (
+                <div class="bg-slate-800/90 border border-slate-700 px-3 py-1.5 rounded-xl flex items-center gap-2">
+                  <span class="text-xs text-amber-400 font-mono font-bold">券: {brand.discountCode}</span>
+                  <CopyButton text={brand.discountCode} label="复制" />
+                </div>
+              )}
+              {brand.reviewSlug && (
+                <a
+                  href={`/reviews/${brand.reviewSlug}`}
+                  class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold border border-white/20 transition-colors"
+                >
+                  📖 深度测速报告
+                </a>
+              )}
+              <a
+                href={`/go/${brand.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-sm transition-colors inline-flex items-center gap-1"
+              >
+                <span>直达官网选购</span>
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Plans Grid for this brand -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {brand.plans.map((plan) => {
+              const isAnnual = plan.period.includes('年') || plan.name.includes('年付') || plan.price.includes('年');
+              const isOnetime = plan.period.includes('一次性') || plan.name.includes('不限时') || plan.name.includes('买断') || plan.period.includes('次');
+              const planType = isOnetime ? 'onetime' : (isAnnual ? 'annual' : 'monthly');
+              
+              return (
+                <div
+                  class="plan-card bg-white rounded-2xl border border-slate-200 hover:border-blue-400 hover:shadow-lg transition-all duration-300 p-5 flex flex-col justify-between"
+                  data-plantype={planType}
+                  data-planname={plan.name.toLowerCase()}
+                  data-traffic={plan.traffic.toLowerCase()}
+                >
+                  <div>
+                    <!-- Badge & Plan Name -->
+                    <div class="flex items-start justify-between gap-2 mb-2">
+                      <h3 class="font-bold text-slate-900 text-base group-hover:text-blue-600 transition-colors">
+                        {plan.name}
+                      </h3>
+                      {plan.badge && (
+                        <span class="text-[11px] px-2 py-0.5 rounded-md font-semibold bg-blue-50 text-blue-700 border border-blue-200 shrink-0">
+                          {plan.badge.split('·')[0].trim()}
+                        </span>
+                      )}
+                    </div>
+
+                    {plan.desc && (
+                      <p class="text-xs text-slate-500 mb-3 line-clamp-2 leading-relaxed">
+                        {plan.desc}
+                      </p>
+                    )}
+
+                    <!-- Traffic Quota Tag -->
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs font-semibold text-slate-700 mb-4 w-full">
+                      <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                      <span>配额: {plan.traffic.replace('📦 ', '').replace('月流量:', '').trim()}</span>
+                    </div>
+
+                    <!-- Price Box -->
+                    <div class="p-3 rounded-xl bg-blue-50/50 border border-blue-100 mb-4">
+                      <div class="flex items-baseline gap-1.5">
+                        <span class="text-2xl font-black text-slate-900">{plan.price}</span>
+                        <span class="text-xs text-slate-500">{plan.period}</span>
+                      </div>
+                      {plan.effective ? (
+                        <div class="text-xs text-emerald-600 font-bold mt-1">
+                          {plan.effective}
+                        </div>
+                      ) : (
+                        <div class="text-xs text-slate-400 mt-1">官方正价标准资费</div>
+                      )}
+                    </div>
+
+                    <!-- Features -->
+                    <div class="space-y-1.5 mb-5 text-xs text-slate-600">
+                      {plan.features.slice(0, 3).map((feat) => (
+                        <div class="flex items-start gap-1.5">
+                          <svg class="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span class="truncate">{feat.replace(/^[：:\s]+/, '')}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <!-- Card Action Footer -->
+                  <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                    {brand.discountCode ? (
+                      <div class="flex items-center gap-1">
+                        <span class="text-[10px] text-slate-400">码:</span>
+                        <CopyButton text={brand.discountCode} label={brand.discountCode} />
+                      </div>
+                    ) : (
+                      <span class="text-[11px] text-slate-400">无需券码直接享</span>
+                    )}
+
+                    <a
+                      href={`/go/${brand.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-colors inline-flex items-center gap-1 shadow-xs"
+                    >
+                      <span>官网开通</span>
+                      <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <!-- No Results Box -->
+    <div id="noResults" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 mt-6">
+      <div class="text-3xl mb-2">🔍</div>
+      <h3 class="text-lg font-bold text-slate-800 mb-1">未匹配到符合条件的套餐</h3>
+      <p class="text-xs text-slate-500">请尝试更换搜索关键词或重置筛选标签</p>
+    </div>
+  </div>
+
+  <!-- Interactive Search & Filter Client Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('planSearch');
+      const filterBtns = document.querySelectorAll('.plan-filter-btn');
+      const planCards = document.querySelectorAll('.plan-card');
+      const brandSections = document.querySelectorAll('.brand-section');
+      const noResults = document.getElementById('noResults');
+
+      let currentType = 'all';
+
+      function filterPlans() {
+        const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+        let visibleCount = 0;
+
+        brandSections.forEach((section) => {
+          let sectionVisibleCards = 0;
+          const brandName = section.dataset.brand || '';
+          const cards = section.querySelectorAll('.plan-card');
+
+          cards.forEach((card) => {
+            const planType = card.dataset.plantype || '';
+            const planName = card.dataset.planname || '';
+            const traffic = card.dataset.traffic || '';
+            const cardText = card.innerText.toLowerCase();
+
+            // Check type match
+            const matchesType = currentType === 'all' || planType === currentType;
+
+            // Check query match
+            const matchesQuery = !query || cardText.includes(query) || brandName.includes(query) || planName.includes(query) || traffic.includes(query);
+
+            if (matchesType && matchesQuery) {
+              card.style.display = 'flex';
+              sectionVisibleCards++;
+              visibleCount++;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          // Show or hide brand section
+          section.style.display = sectionVisibleCards > 0 ? 'block' : 'none';
+        });
+
+        if (noResults) {
+          noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', filterPlans);
+      }
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach((b) => {
+            b.classList.remove('bg-blue-600', 'text-white', 'shadow-xs');
+            b.classList.add('text-slate-600', 'hover:bg-slate-100');
+          });
+          btn.classList.add('bg-blue-600', 'text-white', 'shadow-xs');
+          btn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+
+          currentType = btn.dataset.type || 'all';
+          filterPlans();
+        });
+      });
+    });
+  </script>
+</BaseLayout>

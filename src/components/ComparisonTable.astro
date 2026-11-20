@@ -50,6 +50,15 @@ import CopyButton from './CopyButton.astro';
           <td class="py-4 px-4">
             <span class="font-bold text-slate-900 text-base">{item.price}</span>
             <span class="text-xs text-slate-400 block">{item.priceNote}</span>
+            {item.plans && item.plans.length > 0 && (
+              <a
+                href={`/pricing#brand-${item.id}`}
+                class="inline-block mt-1 text-[11px] text-blue-600 hover:text-blue-800 font-semibold transition-colors"
+                title="查看该品牌所有官方配套价格"
+              >
+                全系{item.plans.length}档 &rarr;
+              </a>
+            )}
           </td>
 
           {/* Traffic */}

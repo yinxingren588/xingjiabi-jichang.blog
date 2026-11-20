@@ -58,6 +58,12 @@ const sortedGuides = allGuides.sort((a, b) => b.data.pubDate.getTime() - a.data.
           </svg>
         </a>
         <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base shadow-md transition-all transform hover:-translate-y-0.5"
+        >
+          <span>💰 全网官方配套价格库 (105档)</span>
+        </a>
+        <a
           href="/guides"
           class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-bold text-sm sm:text-base border border-slate-300 shadow-xs transition-all hover:border-slate-400"
         >
@@ -75,10 +81,13 @@ const sortedGuides = allGuides.sort((a, b) => b.data.pubDate.getTime() - a.data.
           <div class="text-base sm:text-lg font-black text-blue-600">IEPL 企业专线</div>
           <div class="text-[11px] sm:text-xs text-slate-500 mt-1">低抖动不过公网敏感网关</div>
         </div>
-        <div class="p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-blue-200 transition-colors">
-          <div class="text-base sm:text-lg font-black text-slate-900">¥6.58 /月起</div>
+        <a href="/pricing" class="p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-blue-400 hover:shadow-sm transition-all block group">
+          <div class="text-base sm:text-lg font-black text-slate-900 flex items-center justify-between">
+            <span>¥6.58 /月起</span>
+            <span class="text-[10px] text-blue-600 font-semibold group-hover:translate-x-0.5 transition-transform">105档配套 &rarr;</span>
+          </div>
           <div class="text-[11px] sm:text-xs text-slate-500 mt-1">全网极低入门月门槛</div>
-        </div>
+        </a>
         <div class="p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs hover:border-blue-200 transition-colors">
           <div class="text-base sm:text-lg font-black text-emerald-600">高纯净住宅 IP</div>
           <div class="text-[11px] sm:text-xs text-slate-500 mt-1">原生解锁 ChatGPT / 流媒体</div>
