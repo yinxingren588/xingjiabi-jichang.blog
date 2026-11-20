@@ -178,6 +178,7 @@ export const AIRPORTS: Airport[] = [
     discountCode: "fly1111",
     discountNote: "专享福利优惠码",
     affUrl: "https://varnexa.flyvaff.com/#/?code=IC0p64fi",
+    reviewSlug: "flyv",
     speedPeak: "510 Mbps+",
     isRecommended: false
   },
@@ -204,6 +205,7 @@ export const AIRPORTS: Airport[] = [
     discountCode: "lw888",
     discountNote: "专属优惠码",
     affUrl: "https://varnexa.wavenetaff.com/#/?code=j468t9eF",
+    reviewSlug: "wavenet",
     speedPeak: "610 Mbps+",
     isRecommended: false
   },
@@ -230,6 +232,7 @@ export const AIRPORTS: Airport[] = [
     discountCode: "ld888",
     discountNote: "专属优惠码",
     affUrl: "https://varnexa.lingdongaff.com/#/?code=QcRK6OPG",
+    reviewSlug: "lingdong",
     speedPeak: "530 Mbps+",
     isRecommended: false
   },
@@ -254,6 +257,7 @@ export const AIRPORTS: Airport[] = [
     rating: 4.6,
     reviewCount: 210,
     affUrl: "https://varnexa.ladderaff.com/#/?code=KSmLLEnR",
+    reviewSlug: "laddercloud",
     speedPeak: "460 Mbps+",
     isRecommended: false
   },
@@ -280,6 +284,7 @@ export const AIRPORTS: Airport[] = [
     discountCode: "wuyou666",
     discountNote: "无忧专属折扣码",
     affUrl: "https://wep01.worryfreeaff.com/#/?code=56A0RTpU",
+    reviewSlug: "worryfree",
     speedPeak: "520 Mbps+",
     isRecommended: false
   },
@@ -306,6 +311,7 @@ export const AIRPORTS: Airport[] = [
     discountCode: "firefly",
     discountNote: "官方专属福利码",
     affUrl: "https://vip02.fireflyaff.com/#/?code=Fes6j9rn",
+    reviewSlug: "firefly",
     speedPeak: "540 Mbps+",
     isRecommended: false
   },
@@ -330,6 +336,7 @@ export const AIRPORTS: Airport[] = [
     rating: 4.7,
     reviewCount: 195,
     affUrl: "https://vip02.civetaff.com/#/?code=kZlRw46w",
+    reviewSlug: "civet",
     speedPeak: "490 Mbps+",
     isRecommended: false
   },
@@ -356,6 +363,7 @@ export const AIRPORTS: Airport[] = [
     discountCode: "shanyue",
     discountNote: "专属大促优惠码",
     affUrl: "https://vip02.flashleapaff.com/#/?code=FkCGEeaC",
+    reviewSlug: "flashleap",
     speedPeak: "630 Mbps+",
     isRecommended: true
   },
@@ -380,6 +388,7 @@ export const AIRPORTS: Airport[] = [
     rating: 4.8,
     reviewCount: 290,
     affUrl: "https://vip02.kuajieaff.com/#/?code=VfWeYwHM",
+    reviewSlug: "kuajie",
     speedPeak: "600 Mbps+",
     isRecommended: false
   }
