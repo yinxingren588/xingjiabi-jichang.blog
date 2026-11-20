@@ -92,21 +92,30 @@ const airport: Airport | undefined = airportId ? AIRPORTS.find((a) => a.id === a
     {/* Airport Quick Action Callout (If linked to airport) */}
     {airport && (
       <div class="mb-10 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <div class="flex items-center gap-2 mb-1">
-            <span class="font-bold text-slate-900 text-lg">{airport.name}</span>
-            {airport.badge && (
-              <span class="text-xs px-2 py-0.5 rounded bg-blue-600 text-white font-medium">
-                {airport.badge}
-              </span>
-            )}
-          </div>
-          <p class="text-xs text-slate-600 mb-2">{airport.tagline} · {airport.lineType}</p>
-          <div class="flex items-center gap-2">
-            <span class="text-sm font-bold text-blue-700">{airport.price}{airport.priceNote}</span>
-            {airport.discountCode && (
-              <CopyButton text={airport.discountCode} label={airport.discountNote || '领券'} />
-            )}
+        <div class="flex items-start gap-4">
+          {airport.logo && (
+            <img
+              src={airport.logo}
+              alt={airport.name}
+              class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-sm shrink-0 bg-white"
+            />
+          )}
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="font-bold text-slate-900 text-lg">{airport.name}</span>
+              {airport.badge && (
+                <span class="text-xs px-2 py-0.5 rounded bg-blue-600 text-white font-medium">
+                  {airport.badge}
+                </span>
+              )}
+            </div>
+            <p class="text-xs text-slate-600 mb-2">{airport.tagline} · {airport.lineType}</p>
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-bold text-blue-700">{airport.price}{airport.priceNote}</span>
+              {airport.discountCode && (
+                <CopyButton text={airport.discountCode} label={airport.discountNote || '领券'} />
+              )}
+            </div>
           </div>
         </div>
         <a

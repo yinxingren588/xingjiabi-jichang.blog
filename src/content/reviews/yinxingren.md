@@ -17,6 +17,8 @@ cons:
 
 ## 🚀 隐形人机场核心特色
 
+<img src="/logos/yinxingren.jpg" alt="隐形人 Logo" class="w-24 h-24 rounded-2xl border border-slate-200 shadow-sm mb-4 object-cover" />
+
 **隐形人机场** 是近期在注重隐私与极致稳定性的进阶翻墙用户圈中口碑极高的一家**纯 IEPL 专线机场**。其最大卖点在于**“高私密性、纯净原生 IP、晚高峰无视网络波动”**。
 
 | 核心指标 | 实测表现 | 评价等级 |

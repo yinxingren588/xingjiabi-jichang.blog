@@ -25,12 +25,25 @@ const { airport } = Astro.props;
   </head>
   <body class="bg-slate-50 flex items-center justify-center min-h-screen p-4 text-slate-800">
     <div class="max-w-md w-full bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 text-center">
-      {/* Loading animation */}
-      <div class="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-5 shadow-sm border border-blue-100 animate-bounce">
-        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      </div>
+      {/* Brand Logo / Loading animation */}
+      {airport.logo ? (
+        <div class="relative w-20 h-20 mx-auto mb-5">
+          <img
+            src={airport.logo}
+            alt={airport.name}
+            class="w-20 h-20 rounded-2xl object-cover border-2 border-blue-500/20 shadow-md"
+          />
+          <div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs animate-spin">
+            ⚡
+          </div>
+        </div>
+      ) : (
+        <div class="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-5 shadow-sm border border-blue-100 animate-bounce">
+          <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+      )}
 
       <h1 class="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
         正在前往 {airport.name} 官方网站

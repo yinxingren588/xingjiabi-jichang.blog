@@ -1,6 +1,7 @@
 export interface Airport {
   id: string;
   name: string;
+  logo?: string;
   tagline: string;
   badge?: string;
   badgeColor?: 'blue' | 'emerald' | 'amber' | 'rose' | 'purple';
@@ -25,6 +26,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "yinxingren",
     name: "隐形人",
+    logo: "/logos/yinxingren.jpg",
     tagline: "全IEPL顶级纯净专线，超强隐私与抗封锁防护，晚高峰4K秒开",
     badge: "🏆 2026顶级抗封锁推荐",
     badgeColor: "blue",
