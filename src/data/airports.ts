@@ -398,11 +398,11 @@ export const AIRPORTS: Airport[] = [
 
 export const SITE_CONFIG = {
   title: "性价比机场",
-  subtitle: "2026最新高性价比机场推荐与科学上网节点评测",
-  description: "【性价比机场】专注精选 2026 最新稳定、便宜、高性价比翻墙节点与机场推荐，提供晚高峰真实测速、价格对比表格、优惠码汇总及 Clash Verge / Sing-box / Shadowrocket 客户端详细教程。",
+  subtitle: "2026年度高性价比网络加速与机场专线权威评测",
+  description: "【性价比机场】专注国际网络链路质量与抗干扰性能评估。依托家用宽带晚高峰多节点并发压测、原生 IP 纯净度检测及真实流媒体吞吐表现，为您提供真实、中立、高性价比的节点选型参考。",
   siteUrl: "https://xingjiabi-jichang.blog",
-  author: "性价比机场团队",
-  lastUpdated: "2026年最新季度更新",
+  author: "性价比机场技术评测实验室",
+  lastUpdated: "2026年最新季度评估报告",
   telegramChannel: "https://t.me/xingjiabi_jichang",
   contactEmail: "contact@xingjiabi-jichang.blog"
 };
