@@ -15,6 +15,8 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
+<img src="/logos/muguang.png" alt="muguang Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
+
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 
 **暮光加速 (Twilight Network)** 主打**大带宽物理专线与极致高清影音播放体验**。平台底层依托全国多地 BGP 多线接入入口，配合亚太 IPLC 物理专线直连出口，单节点标称峰值吞吐可达 2.5Gbps。

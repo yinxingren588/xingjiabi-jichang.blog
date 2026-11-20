@@ -15,6 +15,8 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
+<img src="/logos/firefly.png" alt="firefly Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
+
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 
 **Firefly 机场 (萤火加速)** 专为**“复杂恶劣网络环境、校园网与移动宽带用户”**量身定制。很多高校校园网、合租房移动宽带以及偏远地区网络存在严重的国际出口 QoS 限速与丢包抖动。

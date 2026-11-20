@@ -15,6 +15,8 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
+<img src="/logos/flyv.png" alt="flyv Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
+
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 
 **飞V (FlyV)** 是近两年备受推崇的新一代轻快敏捷型网络加速服务商。其技术架构重构了传统中转的臃肿转发层，全面引入轻量化内核与高效路由分流规则，大幅压缩了初次建连与 TLS 握手耗时。

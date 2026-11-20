@@ -15,6 +15,8 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
+<img src="/logos/dalaocloud.png" alt="dalaocloud Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
+
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 
 **大佬云 (Dalao Cloud)** 专为**高要求商务办公、跨国科研团队与重度 AI 生产力从业者**设计。其物理网络建立在金融级专线互联基础之上，具备极低的网络抖动 (Jitter < 1.0ms) 与近乎零的丢包率。

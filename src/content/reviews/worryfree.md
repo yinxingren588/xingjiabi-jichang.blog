@@ -15,6 +15,8 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
+<img src="/logos/worryfree.png" alt="worryfree Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
+
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 
 **无忧链接 (WorryFree Link)** 如其名，致力于为用户提供**“无后顾之忧的高可用跨国连接保障”**。对于许多习惯将节点作为外贸、查阅资料日常必备工具的用户而言，“关键时刻掉链子”是最致命的痛点。

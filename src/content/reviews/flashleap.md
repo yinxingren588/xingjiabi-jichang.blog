@@ -15,6 +15,8 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
+<img src="/logos/flashleap.png" alt="flashleap Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
+
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 
 **闪跃 (FlashLeap)** 如其名，致力于实现**“闪电般的连接跃迁与晚高峰零拥塞穿越”**。其核心网络全部搭建在端到端 IPLC 纯净物理专线通道之上，不经公网骨干网拥挤链路。

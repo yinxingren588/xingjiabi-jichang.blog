@@ -69,6 +69,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "muguang",
     name: "暮光加速",
+    logo: "/logos/muguang.png",
     tagline: "大带宽优质专线，高码率4K流媒体播放与多设备极速冲浪",
     badge: "⚡ 晚高峰极速秒开",
     badgeColor: "purple",
@@ -97,6 +98,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "breezenet",
     name: "微风网络 Breezenet",
+    logo: "/logos/breezenet.png",
     tagline: "清爽稳定老牌口碑团队，多入口智能负载均衡与容灾架构",
     badge: "🌟 高口碑稳定首选",
     badgeColor: "emerald",
@@ -125,6 +127,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "flycat",
     name: "飞猫云",
+    logo: "/logos/flycat.png",
     tagline: "大流量超值性价比之王，学生党与高码率视频下载党首选",
     badge: "💰 性价比大流量之王",
     badgeColor: "amber",
@@ -153,6 +156,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "dalaocloud",
     name: "大佬云",
+    logo: "/logos/dalaocloud.png",
     tagline: "企业级高净值商业专线，超低延迟，AI 生产力与商务办公首选",
     badge: "💼 企业级高端专线",
     badgeColor: "blue",
@@ -179,6 +183,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "flyv",
     name: "飞V",
+    logo: "/logos/flyv.png",
     tagline: "轻快敏捷新一代机场，低延迟、快响应、4K秒开",
     badge: "⚡ 毫秒级极速响应",
     badgeColor: "purple",
@@ -207,6 +212,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "wavenet",
     name: "浪网 WaveNet",
+    logo: "/logos/wavenet.png",
     tagline: "汹涌澎湃的下行速度，重度 4K 蓝光流媒体与大文件下载神器",
     badge: "🌊 2.5G大带宽巨无霸",
     badgeColor: "blue",
@@ -235,6 +241,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "lingdong",
     name: "灵动云",
+    logo: "/logos/lingdong.png",
     tagline: "节点灵活机动，智能动态路由，外服游戏电竞超低丢包",
     badge: "🎮 电竞游戏加速优选",
     badgeColor: "emerald",
@@ -263,6 +270,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "laddercloud",
     name: "梯子云 LadderCloud",
+    logo: "/logos/laddercloud.png",
     tagline: "通俗易懂的老牌云加速服务，傻瓜式操作与稳定品质",
     badge: "🪜 新手友好零门槛",
     badgeColor: "amber",
@@ -289,6 +297,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "worryfree",
     name: "无忧链接",
+    logo: "/logos/worryfree.png",
     tagline: "7x24小时全天候高在线率，告别断连与维护烦恼",
     badge: "🛡️ 99.99%高可用容灾",
     badgeColor: "rose",
@@ -317,6 +326,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "firefly",
     name: "Firefly机场",
+    logo: "/logos/firefly.png",
     tagline: "暗夜中的明亮极速之光，新协议低丢包强劲穿透校园网",
     badge: "🔥 弱网强劲穿透先锋",
     badgeColor: "rose",
@@ -345,6 +355,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "civet",
     name: "灵猫",
+    logo: "/logos/civet.png",
     tagline: "敏捷机动的高速节点群，覆盖全球多个小众国家地区",
     badge: "🌐 全球冷门小众节点群",
     badgeColor: "purple",
@@ -371,6 +382,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "flashleap",
     name: "闪跃 FlashLeap",
+    logo: "/logos/flashleap.png",
     tagline: "闪电般瞬间越过晚高峰拥堵，专线高敏吞吐秒开体验",
     badge: "⚡ 1x真实倍率绝不扣量",
     badgeColor: "blue",
@@ -399,6 +411,7 @@ export const AIRPORTS: Airport[] = [
   {
     id: "kuajie",
     name: "跨界云",
+    logo: "/logos/kuajie.png",
     tagline: "外贸出海、科研学术与跨境电商一站式网络加速方案",
     badge: "🌍 跨境出海商用专线",
     badgeColor: "emerald",

@@ -15,7 +15,7 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
-<img src="/logos/yinxingren.jpg" alt="隐形人 Logo" class="w-24 h-24 rounded-2xl border border-slate-200 shadow-sm mb-6 object-cover" />
+<img src="/logos/yinxingren.jpg" alt="yinxingren Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
 
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 

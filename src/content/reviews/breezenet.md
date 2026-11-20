@@ -15,6 +15,8 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
+<img src="/logos/breezenet.png" alt="breezenet Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
+
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 
 **微风网络 (Breezenet)** 凭借逾 3 年的稳定运营积累了极佳的用户口碑。其系统架构摒弃了激进的廉价超卖模式，采用稳健的**跨省 BGP 多入口 + IPLC/IEPL 企业物理内网通道**。

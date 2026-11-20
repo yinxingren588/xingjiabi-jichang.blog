@@ -15,6 +15,8 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
+<img src="/logos/laddercloud.png" alt="laddercloud Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
+
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 
 **梯子云 (LadderCloud)** 是一家深耕大众市场的**“通俗实用、零折腾体验老牌云加速平台”**。很多初学者在初次接触代理工具时，往往被复杂的分流规则、订阅转换与内核报错劝退，而梯子云正是围绕“易用性”与“可靠性”而深度打磨。

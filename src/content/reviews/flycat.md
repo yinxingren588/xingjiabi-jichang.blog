@@ -15,6 +15,8 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
+<img src="/logos/flycat.png" alt="flycat Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
+
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 
 **飞猫云 (FlyCat Cloud)** 定位于**“极致质价比与大配额流量普及型服务商”**。平台针对学生群体、科研初学者以及预算敏感型个人冲浪用户，打造了超低门槛的 IPLC 物理专线订阅矩阵。

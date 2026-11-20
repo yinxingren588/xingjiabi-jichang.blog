@@ -15,6 +15,8 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
+<img src="/logos/civet.png" alt="civet Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
+
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 
 **灵猫 (Civet Network)** 与其他只扎堆在香港、日本热门线路的机场不同，其最大差异化竞争优势在于**“全球冷门国家与小众节点矩阵”**。

@@ -15,6 +15,8 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
+<img src="/logos/wavenet.png" alt="wavenet Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
+
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 
 **浪网 (WaveNet)** 顾名思义，主打的是**“如同浪涌般汹涌的大下行带宽与高并发吞吐能力”**。其全线采用高规格 IPLC 物理专线通道，出口链路标称单节点上限可达 2.5Gbps。

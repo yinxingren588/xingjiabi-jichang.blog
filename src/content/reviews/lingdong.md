@@ -15,6 +15,8 @@ cons:
   - "高等级物理专线带宽成本较高，建议结合自身月度消耗按需选购匹配套餐"
 ---
 
+<img src="/logos/lingdong.png" alt="lingdong Logo" class="w-20 h-20 rounded-2xl border border-slate-200/90 shadow-xs mb-6 object-cover bg-white p-1" />
+
 ## 一、服务架构与物理链路拓扑 (Infrastructure & Topology)
 
 **灵动云 (LingDong Cloud)** 的技术特色在于其**“电竞级低延迟调度与 UDP 高吞吐优化”**。平台不仅能够胜任日常 4K 流媒体与 AI 访问，更在跨国游戏联机网络上投入了专属通道资源。
